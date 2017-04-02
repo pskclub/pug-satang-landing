@@ -1,0 +1,204 @@
+doctype html
+html.no-js(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='x-ua-compatible', content='ie=edge')
+        title Apptech
+        meta(name='description', content='')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='shortcut icon', type='image/x-icon', href='img/favicon.ico')
+        link(rel='stylesheet', href='css/bootstrap.min.css')
+        link(rel='stylesheet', href='css/font-awesome.min.css')
+        link(rel='stylesheet', href='css/material-design-iconic-font.min.css')
+        link(rel='stylesheet', href='css/magnific-popup.css')
+        link(rel='stylesheet', href='css/venobox.css')
+        link(rel='stylesheet', href='css/meanmenu.min.css')
+        link(rel='stylesheet', href='css/slick.css')
+        link(rel='stylesheet', href='css/owl.carousel.css')
+        link(rel='stylesheet', href='css/owl.theme.css')
+        link(rel='stylesheet', href='css/owl.transitions.css')
+        link(rel='stylesheet', href='css/animate.css')
+        link(rel='stylesheet', href='css/normalize.css')
+        link(rel='stylesheet', href='css/main.css')
+        link(rel='stylesheet', href='style.css')
+        link(rel='stylesheet', href='css/responsive.css')
+        link(rel='stylesheet', href='css/color/color-1.css')
+        script(src='js/vendor/modernizr-2.8.3.min.js')
+    body
+        //if lt IE 8
+          p.browserupgrade
+            | You are using an
+            strong outdated
+            |  browser. Please
+            a(href='http://browsehappy.com/') upgrade your browser
+            |  to improve your experience.
+        .wrapper
+            header.header-area
+                #main-menu.sticker
+                    .container
+                        .row
+                            .col-md-12
+                                .logo.float-left
+                                    a(href='index.html')
+                                        img(src='img/logo/logo.png', alt='logo')
+                                .main-menu.float-right
+                                    nav
+                                        ul
+                                            li
+                                                a(href='#') 1 BTC = $1,147.93
+                                            li.active
+                                                a(href='#home-area') HOME
+                                            li
+                                                a(href='#product-area') Product
+                                            li
+                                                a(href='#signup-area') Sign Up
+                                            li
+                                                a(href='#') Sign In
+                                            li
+                                                a(href='#')
+                                                    img(src='img/th.png')
+                            .col-md-12.col-sm-12.hidden-lg.hidden-md
+                                .mobile-menu
+                                    nav
+                                        ul
+                                            li
+                                                a(href='#') 1 BTC = $1,147.93
+                                            li.active
+                                                a(href='#home-area') HOME
+                                            li
+                                                a(href='#about-area') Product
+                                            li
+                                                a(href='#support-area') Sign Up
+                                            li
+                                                a(href='#pricing-area') Sign In
+                                            li
+                                                a(href='#')
+                                                    img(src='img/th.png')
+            #home-area.bg-oapcity-40.bg-overly.sm-height-none(style='height: 97px')
+            .container.space-top
+                .col-md-3
+                    .section-nav
+                        ul
+                            li.heading Coinbase API
+                            li
+                                a(href='/') Getting Started
+                            li
+                                a(href='/docs/wallet/client-libraries') Libraries
+                            li.active.expanded
+                                a(href='/docs/wallet/api-key-authentication') API Key Authentication
+                            li
+                                a(href='/docs/wallet/permissions') Permissions
+                            li
+                                a(href='/docs/wallet/notifications') Notifications
+                            li
+                                a(href='/docs/wallet/multisig') Multisig
+                            li
+                                a(href='/docs/wallet/error-codes') Error Codes
+                        ul
+                            li.heading Guides
+                            li
+                                a(href='/docs/wallet/guides/bitcoin-wallet') Create a Wallet
+                            li
+                                a(href='/docs/wallet/guides/send-receive') Send and Receive BTC
+                            li
+                                a(href='/docs/wallet/guides/buy-sell') Buy and Sell BTC
+                            li
+                                a(href='/docs/wallet/guides/price-data') Price Data
+                        ul
+                            li.heading Buy Widget
+                            li
+                                a(href='/docs/buy-widget') Introduction
+                        ul
+                            li.heading Coinbase Connect (OAuth2)
+                            li
+                                a(href='/docs/wallet/coinbase-connect') Introduction
+                            li
+                                a(href='/docs/wallet/coinbase-connect/integrating') Integrating
+                            li
+                                a(href='/docs/wallet/coinbase-connect/mobile') Mobile integration
+                            li
+                                a(href='/docs/wallet/coinbase-connect/permissions') Permissions
+                            li
+                                a(href='/docs/wallet/coinbase-connect/two-factor-authentication') Two Factor Authentication
+                            li
+                                a(href='/docs/wallet/coinbase-connect/access-and-refresh-tokens') Refresh tokens
+                            li
+                                a(href='/docs/wallet/coinbase-connect/security-best-practices') Security
+                .col-md-9
+                    .docs-content
+                        h1 API Key Authentication
+                        p
+                            | API Key authentication should only be used to access your own account or merchant orders. If your application requires access to other Coinbase users&rsquo; accounts, do not use API Key. To securely access other Coinbase users&rsquo; accounts, use
+                            a(rel='noreferrer noopener', href='/docs/wallet/coinbase-connect') Coinbase Connect (OAuth2)
+                        h2 Signing requests
+                        p
+                            | API key authentication requires each request to be signed (enhanced security measure). You can create and activate new API keys in your
+                            a(rel='noreferrer noopener', href='https://www.coinbase.com/settings/api') API settings
+                            | . Your API keys should be assigned to access only accounts and permission scopes that are necessary for your app to function. For more detail on which scopes are required to access corresponding endpoints and functionality, see the
+                            a(rel='noreferrer noopener', href='/api/v2') API reference
+                            | .
+                        h3#making-a-request Making a request
+                        p All REST requests must contain the following headers:
+                        ul
+                            li
+                                code.prettyprint CB-ACCESS-KEY
+                                |  API key as a string
+                            li
+                                code.prettyprint CB-ACCESS-SIGN
+                                |  Message signature (see below)
+                            li
+                                code.prettyprint CB-ACCESS-TIMESTAMP
+                                |  Timestamp for your request
+                        p
+                            | All request bodies should have content type
+                            code.prettyprint application/json
+                            |  and be valid JSON.
+                        p Example request:
+                        pre.highlight.shell.
+
+                        p
+                            | The
+                            code.prettyprint CB-ACCESS-SIGN
+                            |  header is generated by creating a sha256 HMAC using the secret key on the prehash string
+                            code.prettyprint timestamp + method + requestPath + body
+                            |  (where + represents string concatenation). The timestamp value is the same as the
+                            code.prettyprint CB-ACCESS-TIMESTAMP
+                            |  header.
+                        p
+                            | The
+                            code.prettyprint body
+                            |  is the request body string. It is omitted if there is no request body (typically for GET requests).
+                        p
+                            | The
+                            code.prettyprint method
+                            |  should be UPPER CASE.
+                        p
+                            | The
+                            code.prettyprint requestPath
+                            |  is the full path and query parameters of the URL, e.g.:
+                            code.prettyprint /v2/exchange-rates?currency=USD
+                            | .
+                        p
+                            | The
+                            code.prettyprint CB-ACCESS-TIMESTAMP
+                            |  header MUST be number of seconds since
+                            a(rel='noreferrer noopener', href='https://en.wikipedia.org/wiki/Unix_time') Unix Epoch
+                            |  in UTC.
+                        p
+                            | Your timestamp must be within 30 seconds of the API service time, or your request will be considered expired and rejected. We recommend using the
+                            a(rel='noreferrer noopener', href='https://developers.coinbase.com/api/v2#time') time API endpoint
+                            |  to query for the API server time if you believe there may be a time skew between your server and the API servers.
+                        p Here are some examples on how to build authentication in different languages:
+            hr.space-top
+            footer.footer
+                span
+                    | Copyright &copy; 2016
+                    a(href='http://satang.com/', target='_blank') Satang
+                    |  all rights reserved.
+            #toTop
+                i.fa.fa-chevron-up
+        script(src='js/vendor/jquery-1.11.3.min.js')
+        script(src='js/bootstrap.min.js')
+        script(src='js/ajax-mail.js')
+        script(src='js/plugins.js')
+        script(src='js/main.js')
